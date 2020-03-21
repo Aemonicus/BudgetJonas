@@ -97,6 +97,19 @@ var UIController = (function () {
 
     },
 
+    clearFields: function () {
+      var fields, fieldsArr
+      fields = document.querySelectorAll(DOMStrings.inputDescription + ", " + DOMStrings.inputValue)
+
+      fieldsArr = Array.prototype.slice.call(fields)
+
+      fieldsArr.forEach(function (item, index, array) {
+        item.value = ""
+      })
+
+      fieldsArr[0].focus()
+    },
+
     getDOMStrings: function () {
       return DOMStrings
     }
@@ -127,6 +140,8 @@ var controller = (function (budgetCtrl, UICtrl) {
     newItem = budgetCtrl.addItem(input.type, input.description, input.value)
 
     UICtrl.addListItem(newItem, input.type)
+
+    UICtrl.clearFields()
   }
 
   return {
